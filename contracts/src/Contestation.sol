@@ -286,7 +286,7 @@ contract Contestation is VRFConsumerBaseV2Plus, ReentrancyGuard {
         // 2. Stake du contestataire
         uint8 outcome; // 0 rejet
         if (upheld) {
-            outcome = nRevoke > nDown ? 2 : 1;
+            outcome = nRevoke > nDown ? uint8(2) : uint8(1);
             freeBalance[c.challenger] += CHALLENGE_STAKE;
         } else if (quorum) {
             pot += CHALLENGE_STAKE;
