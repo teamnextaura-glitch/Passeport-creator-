@@ -1,0 +1,24 @@
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
+
+const ROUTES = [
+  "",
+  "/demo",
+  "/demo/simulator",
+  "/demo/timeline",
+  "/demo/contest",
+  "/demo/verifier",
+  "/demo/wall",
+  "/demo/legal",
+  "/inscription",
+  "/legal",
+  "/privacy",
+];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return ROUTES.map((path) => ({
+    url: `${SITE_URL}${path}`,
+    changeFrequency: "weekly",
+    priority: path === "" ? 1 : 0.6,
+  }));
+}
