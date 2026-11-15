@@ -59,7 +59,10 @@ forge test -vvv
 6. Vérifier statut du Passeport, soldes libres, supply totale
 
 ## Site
-À venir (lot 3). Les pages `/demo/*` seront statiques et n'effectueront aucun appel réseau.
+En ligne : https://passeport-createur.vercel.app (Next.js 14, dossier `site/`). Les pages `/demo/*` sont statiques et n'effectuent aucun appel réseau ; `site/scripts/check-demo.mjs` fait échouer le build sinon.
+
+## État des tests
+`forge build` et `forge test` : 24 tests sur 24 au vert (Foundry 1.9.0, 15/11/2026).
 
 ## Checklist RGPD des démos (avant chaque déploiement)
 - [ ] Onglet Network vide après chargement d'une page `/demo`

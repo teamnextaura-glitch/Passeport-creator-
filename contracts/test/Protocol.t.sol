@@ -114,11 +114,12 @@ contract ProtocolTest is Test {
     }
 
     function test_VestingLinearAfterCliff_AnyoneCanRelease() public {
-        vm.warp(block.timestamp + 365 days + 365 days); // mois 24
+        uint256 t0 = block.timestamp; // instant du déploiement du vesting
+        vm.warp(t0 + 730 days); // mois 24
         vm.prank(challenger); // un tiers déclenche la libération
         vesting.release(address(token));
         assertApproxEqAbs(token.balanceOf(FOUNDER), 83_333_333e18, 1e18);
-        vm.warp(block.timestamp + 730 days); // mois 48
+        vm.warp(t0 + 1460 days); // mois 48
         vesting.release(address(token));
         assertEq(token.balanceOf(FOUNDER), 250_000_000e18);
     }
@@ -196,7 +197,8 @@ contract ProtocolTest is Test {
         bytes32 admin = sbt.DEFAULT_ADMIN_ROLE();
         sbt.renounceRole(admin, address(this));
         assertFalse(sbt.hasRole(admin, address(this)));
+        bytes32 certifier = sbt.CERTIFIER_ROLE(); // lu avant expectRevert, qui vise l'appel suivant
         vm.expectRevert();
-        sbt.grantRole(sbt.CERTIFIER_ROLE(), challenger);
+        sbt.grantRole(certifier, challenger);
     }
 }
