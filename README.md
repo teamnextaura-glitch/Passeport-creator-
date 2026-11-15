@@ -76,7 +76,8 @@ forge test -vvv
 - Le commit-reveal n'empêche pas l'achat de votes
 - Dépendance à l'abonnement Chainlink VRF
 - Un Passeport lié à une clé perdue est perdu
-- Certification : récusation, plafond hebdomadaire par juré et nouveau tirage automatique non implémentés
+- Certification : plafond de charge en fenêtre fixe de 7 jours (pas strictement glissante) ; un tirage qui échoue compte quand même dans la charge des jurés déjà tirés ; pas de récusation possible pendant un remplacement en attente
+- Tirage par tentatives aléatoires (60 au plus) : avec peu de jurés éligibles, un jury complet peut ne pas être trouvé et la candidature est annulée
 
 ## Liens
 X @PasseportCreateur, Discord, Telegram, Farcaster, LinkedIn, YouTube, Instagram, TikTok : liens centralisés sur le site.
